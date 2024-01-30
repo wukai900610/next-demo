@@ -39,8 +39,19 @@ const View = memo(() => {
         console.error(error);
       });
   };
+  const init = () => {
+    fetch("/api/system/session/getCurrentSession")
+      .then((res) => {
+        if (res) {
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
+    init();
     getQuestionList();
   }, []);
 
