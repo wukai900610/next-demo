@@ -22,7 +22,9 @@ const LoginForm = () => {
   // const { pathname } = useLocation()
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [codeUrl, setCodeUrl] = useState("");
+  const [codeUrl, setCodeUrl] = useState(
+    "/api/system/captcha/queryLoginCaptcha"
+  );
 
   // const { authStore } = rootStore
 
@@ -43,17 +45,17 @@ const LoginForm = () => {
       // 	...loginForm,
       // 	password: md5(loginForm.password)
       // })
-    //   const { data } = await fetch("/api/system/session/getCurrentSession", {
-    //     ...loginForm,
-    //     password: md5(loginForm.password),
-    //   });
+      //   const { data } = await fetch("/api/system/session/getCurrentSession", {
+      //     ...loginForm,
+      //     password: md5(loginForm.password),
+      //   });
       fetch("/api/system/session/login", {
         ...loginForm,
         password: md5(loginForm.password),
       }).then((res) => {
         if (res) {
         }
-      })
+      });
 
       // authStore.setToken(data.sessionId)
       // authStore.setUserinfo(data)
@@ -73,8 +75,6 @@ const LoginForm = () => {
     );
   };
   useEffect(() => {
-    getCodeurl();
-
     const userInfo = getlocalStorage("userInfo") || {};
     // if (pathname === '/login') {
     // 	if (userInfo.id) {
@@ -118,13 +118,15 @@ const LoginForm = () => {
         <Form.Item label="验证码" name="captcha">
           <Input
             addonAfter={
-              <img
-                height={32}
-                width={84}
-                src={codeUrl}
-                onClick={getCodeurl}
-                alt="验证码"
-              />
+              <div style={{ width: 84 }}>
+                <img
+                  width={84}
+                  // height={34}
+                  src={codeUrl}
+                  onClick={getCodeurl}
+                  alt="验证码"
+                />
+              </div>
             }
             placeholder="请输入验证码"
             // style={{ width: "100%" }}
