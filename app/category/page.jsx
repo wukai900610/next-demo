@@ -11,7 +11,6 @@ import React, {
 
 import Loading from "@/app/components/loading";
 
-// 分仓需求提报
 const View = memo(() => {
   const [state, setState] = useState({
     data: [],

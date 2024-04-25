@@ -2,15 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "home",
-  description: "home desc",
+  title: "page",
+  description: "page desc",
 };
 
 const View = () => {
   return (
     <>
       <div className="pageContent">
-        welcome home
+        欢迎
         <br/>
         <Link href="/category">category</Link>
         <br/>
